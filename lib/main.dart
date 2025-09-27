@@ -26,6 +26,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  String? _select;
   int _currentQuestionIndex = 0;
   int _score = 0;
 
@@ -104,6 +105,41 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_select == null) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Select Gender")),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "Are you a boy or a girl?",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  minimumSize: const Size(200, 48),
+                ),
+                onPressed: () => setState(() => _select = 'boy'),
+                child: const Text("Boy", style: TextStyle(fontSize: 18)),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pink,
+                  minimumSize: const Size(200, 48),
+                ),
+                onPressed: () => setState(() => _select = 'girl'),
+                child: const Text("Girl", style: TextStyle(fontSize: 18)),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     var currentQ = _questions[_currentQuestionIndex];
 
     return Scaffold(
