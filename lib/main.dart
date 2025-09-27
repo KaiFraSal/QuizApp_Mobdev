@@ -76,9 +76,9 @@ class _QuizScreenState extends State<QuizScreen> {
       "correct": "Google",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "Who is the cutest pink girl?",
+      "answers": ["Elysia", "Microsoft", "Facebook", "Google"],
+      "correct": "Elysia",
     },
   ];
 
@@ -152,6 +152,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String msg = score >= 5 ? 'You passed! :)' : 'You failed :(';
     return Scaffold(
       appBar: AppBar(title: const Text("Result")),
       body: Center(
@@ -161,6 +162,11 @@ class ResultScreen extends StatelessWidget {
             Text(
               "Your Score: $score / $total",
               style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              msg,
+              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)
             ),
             const SizedBox(height: 20),
             ElevatedButton(
