@@ -103,6 +103,15 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  Color? test(String? color){
+    if(color == 'girl'){
+      return Colors.pink[100];
+    }
+    else{
+      return Colors.blue[100];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_select == null) {
@@ -119,7 +128,7 @@ class _QuizScreenState extends State<QuizScreen> {
               const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.blue[100],
                   minimumSize: const Size(200, 48),
                 ),
                 onPressed: () => setState(() => _select = 'boy'),
@@ -128,7 +137,7 @@ class _QuizScreenState extends State<QuizScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink,
+                  backgroundColor: Colors.pink[100],
                   minimumSize: const Size(200, 48),
                 ),
                 onPressed: () => setState(() => _select = 'girl'),
@@ -168,6 +177,9 @@ class _QuizScreenState extends State<QuizScreen> {
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 width: double.infinity,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: test(_select)
+                  ),
                   onPressed: () => _answerQuestion(answer),
                   child: Text(answer, style: const TextStyle(fontSize: 18)),
                 ),
