@@ -25,8 +25,18 @@ class QuizScreen extends StatefulWidget {
   _QuizScreenState createState() => _QuizScreenState();
 }
 
+String? _select;
+
+Color? test(String? color){
+  if(color == 'girl'){
+    return Colors.pink[200];
+  }
+  else{
+    return Colors.blue[200];
+  }
+}
+
 class _QuizScreenState extends State<QuizScreen> {
-  String? _select;
   int _currentQuestionIndex = 0;
   int _score = 0;
 
@@ -93,7 +103,6 @@ class _QuizScreenState extends State<QuizScreen> {
         _currentQuestionIndex++;
       });
     } else {
-      // Navigate to Result Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -103,47 +112,63 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
-  Color? test(String? color){
-    if(color == 'girl'){
-      return Colors.pink[100];
-    }
-    else{
-      return Colors.blue[100];
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_select == null) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("Select Gender")),
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                "Are you a boy or a girl?",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      return Container(
+        decoration: const BoxDecoration(
+          gradient:  LinearGradient(
+            begin: Alignment.topCenter,
+            end:  Alignment.bottomCenter,
+            colors: [Color(0xffFFBF00), Color(0xffF85B1A)]
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: const Text(
+              "Select Gender",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[100],
-                  minimumSize: const Size(200, 48),
+            ),
+            centerTitle: true,
+            backgroundColor: Color(0xff072083),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "Are you a boy or a girl?",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () => setState(() => _select = 'boy'),
-                child: const Text("Boy", style: TextStyle(fontSize: 18)),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink[100],
-                  minimumSize: const Size(200, 48),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue[200],
+                        minimumSize: const Size(180, 48),
+                      ),
+                      onPressed: () => setState(() => _select = 'boy'),
+                      child: const Text("Boy", style: TextStyle(fontSize: 18)),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pink[200],
+                        minimumSize: const Size(180, 48),
+                      ),
+                      onPressed: () => setState(() => _select = 'girl'),
+                      child: const Text("Girl", style: TextStyle(fontSize: 18)),
+                    ),
+                  ],
                 ),
-                onPressed: () => setState(() => _select = 'girl'),
-                child: const Text("Girl", style: TextStyle(fontSize: 18)),
-              ),
-            ],
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       );
@@ -153,39 +178,56 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Quiz App"),
+        title: const Text(
+          "Quiz App",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: Color(0xff072083),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Question ${_currentQuestionIndex + 1}/${_questions.length}",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              currentQ["question"],
-              style: const TextStyle(fontSize: 22),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 30),
-            ...currentQ["answers"].map<Widget>((answer) {
-              return Container(
-                margin: const EdgeInsets.symmetric(vertical: 6),
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: test(_select)
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xffFFBF00), Color(0xffF85B1A)]
+          )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Question ${_currentQuestionIndex + 1}/${_questions.length}",
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                currentQ["question"],
+                style: const TextStyle(fontSize: 22),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              ...currentQ["answers"].map<Widget>((answer) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 6),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: test(_select)
+                    ),
+                    onPressed: () => _answerQuestion(answer),
+                    child: Text(answer, style: const TextStyle(fontSize: 18)),
                   ),
-                  onPressed: () => _answerQuestion(answer),
-                  child: Text(answer, style: const TextStyle(fontSize: 18)),
-                ),
-              );
-            }).toList(),
-          ],
+                );
+              }).toList(),
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );
@@ -201,32 +243,56 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String msg = score >= 5 ? 'You passed! :)' : 'You failed :(';
-    return Scaffold(
-      appBar: AppBar(title: const Text("Result")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Your Score: $score / $total",
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xffFFBF00), Color(0xffF85B1A)]
+          )
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text(
+            "Result",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
             ),
-            const SizedBox(height: 20),
-            Text(
-              msg,
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const QuizScreen()),
-                );
-              },
-              child: const Text("Restart Quiz"),
-            ),
-          ],
+          ),
+          centerTitle: true,
+          backgroundColor: Color(0xff072083),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Your Score: $score / $total",
+                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                msg,
+                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: test(_select)
+                ),
+                onPressed: () {
+                  _select = null;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const QuizScreen()),
+                  );
+                },
+                child: const Text("Restart Quiz"),
+              ),
+            ],
+          ),
         ),
       ),
     );
