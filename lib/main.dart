@@ -42,54 +42,54 @@ class _QuizScreenState extends State<QuizScreen> {
 
   final List<Map<String, dynamic>> _questions = [
     {
-      "question": "What is the capital of the Philippines?",
-      "answers": ["Cebu", "Manila", "Davao", "Quezon City"],
-      "correct": "Manila",
+      "question": "Who is the main character of Dragon Ball?",
+      "answers": ["Son Goku", "Son Gohan", "Vegeta", "Piccolo"],
+      "correct": "Son Goku",
     },
     {
-      "question": "Which programming language does Flutter use?",
-      "answers": ["Java", "Kotlin", "Dart", "Swift"],
-      "correct": "Dart",
+      "question": "From what alien race is Goku from?",
+      "answers": ["Humans", "Saiyans", "Majins", "Namekians"],
+      "correct": "Saiyans",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "What transformation did Goku achieve on Namek?",
+      "answers": ["Super Saiyan", "Ultra Saiyan", "Mega Saiyan", "Hyper Saiyan"],
+      "correct": "Super Saiyan",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "What is the multiplier for Super Saiyan?",
+      "answers": ["x50", "x20", "x25", "x10"],
+      "correct": "x50",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "What was Goku's power level on Namek as a Super Saiyan?",
+      "answers": ["3 million", "120 million", "150 million", "110 million"],
+      "correct": "150 million",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "What Super Saiyan grade was Goku using against Cell?",
+      "answers": ["Grade 4", "Grade 3", "Grade 2", "Grade 5"],
+      "correct": "Grade 4",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "The fight between Goku and Beerus threatened to destroy the ___?",
+      "answers": ["Planet", "Universe", "Galaxy", "Solar System"],
+      "correct": "Universe",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "Goku achieved ___ in the Tournament of Power?",
+      "answers": ["Ultra Instinct", "Super Instinct", "Quick Instinct", "Fast Instinct"],
+      "correct": "Ultra Instinct",
     },
     {
-      "question": "Who created Flutter?",
-      "answers": ["Apple", "Microsoft", "Facebook", "Google"],
-      "correct": "Google",
+      "question": "Which Dragon Ball holds significant importance to Goku?",
+      "answers": ["Three-star Dragon Ball", "Two-star Dragon Ball", "Five-star Dragon Ball", "Four-star Dragon Ball"],
+      "correct": "Four-star Dragon Ball",
     },
     {
-      "question": "Who is the cutest pink girl?",
-      "answers": ["Elysia", "Microsoft", "Facebook", "Google"],
-      "correct": "Elysia",
+      "question": "Fill in the blanks: I am the ___ Son Goku!",
+      "answers": ["Super Saiyan", "Dragon Ball Z", "Dragon Ball Super", "Dragon Ball"],
+      "correct": "Super Saiyan",
     },
   ];
 
@@ -127,7 +127,7 @@ class _QuizScreenState extends State<QuizScreen> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: const Text(
-              "Select Gender",
+              "Choose:",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
